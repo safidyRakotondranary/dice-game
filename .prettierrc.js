@@ -1,0 +1,10 @@
+module.exports = {
+  extends: 'prettier',
+  arrowParens: 'avoid',
+  bracketSameLine: true,
+  bracketSpacing: true,
+  singleQuote: true,
+  trailingComma: 'all',
+  endOfLine: 'auto',
+  printWidth: 100
+};
