@@ -34,7 +34,7 @@ const Result = (): JSX.Element => {
       navigate('/gameConfiguration');
     } else {
       resetplayersDetails();
-      navigate('/multiplayerGame');
+      navigate('/game');
     }
   };
 

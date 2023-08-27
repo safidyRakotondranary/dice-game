@@ -14,12 +14,10 @@ jest.mock('../../data/gameConfig', () => {
   };
 });
 
-const mockOnStartGame = jest.fn();
-
 describe('MultiplayerGameConfiguration', () => {
   it('should update the numberOfPlayersSubject when input value changes', () => {
     // Given
-    render(<MultiplayerGameConfiguration onStartGame={mockOnStartGame} />);
+    render(<MultiplayerGameConfiguration onStartGame={() => {}} />);
 
     // When
     const inputField = screen.getByLabelText('Number of Players:');

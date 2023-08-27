@@ -1,5 +1,5 @@
 import { act, fireEvent, render } from '@testing-library/react';
-import Game from 'src/features/dice/components/Game';
+import Game from 'src/features/dice/components/Game/Game';
 import useDicesList from '../../hooks/useDicesList';
 
 const mockUseDicesList = useDicesList as jest.MockedFunction<typeof useDicesList>;
@@ -32,8 +32,8 @@ describe('Game', () => {
       initializeDices: jest.fn(),
       rollDices: jest.fn(),
     }));
-    const { container } = render(<Game setScore={() => {}} />);
-    const dicesComponents = container.querySelectorAll('[data-test="dice-component"]');
+    const { container } = render(<Game />);
+    const dicesComponents = container.querySelectorAll('.dice-component');
 
     // Then
     expect(dicesComponents.length).toEqual(2);
@@ -51,7 +51,7 @@ describe('Game', () => {
     }));
 
     // When
-    const { getByText } = render(<Game setScore={() => {}} />);
+    const { getByText } = render(<Game />);
     const rollButton = getByText('Roll dices');
     act(() => {
       fireEvent.click(rollButton);
@@ -73,7 +73,7 @@ describe('Game', () => {
     }));
 
     // When
-    const { getByText } = render(<Game setScore={() => {}} />);
+    const { getByText } = render(<Game />);
 
     // Then
     expect(getByText(`Total: 6`)).toBeInTheDocument();

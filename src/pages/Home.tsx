@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const Home = (): JSX.Element => {
@@ -5,7 +6,9 @@ const Home = (): JSX.Element => {
     <div>
       <h1>Welcome to the Dice Game!</h1>
       <p>This is the home page of the game. Get ready to roll the dice!</p>
-      <Link to="/gameConfiguration">Play game</Link>
+      <Link to="/gameConfiguration">
+        <Button>Play game</Button>
+      </Link>
     </div>
   );
 };

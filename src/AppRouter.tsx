@@ -2,10 +2,9 @@ import Home from 'src/pages/Home';
 import Result from 'src/pages/Result';
 import NotFound from 'src/pages/NotFound';
 import Rules from 'src/pages/Rules';
-import MultiplayerGameConfiguration from './features/dice/components/MultiplayerGameConfiguration';
-
+import GameConfiguration from 'src/pages/GameConfiguration';
+import Dice from 'src/pages/Dice';
 import { createBrowserRouter } from 'react-router-dom';
-import MultiplayerGame from './features/dice/components/MultiplayerGame';
 
 const router = createBrowserRouter([
   {
@@ -18,11 +17,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/gameConfiguration',
-    element: <MultiplayerGameConfiguration />,
+    element: <GameConfiguration />,
   },
   {
-    path: '/multiplayerGame',
-    element: <MultiplayerGame />,
+    path: '/game',
+    element: <Dice />,
   },
   {
     path: '/result',

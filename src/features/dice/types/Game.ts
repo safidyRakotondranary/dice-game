@@ -1,14 +1,17 @@
-export type MultiplayerGameConfigurationPropsType = {
-  onStartGame?: () => void
-};
-
 export type GamePropsType = {
-  setScore: (score: number) => void,
-  alreadyPlayed?: boolean,
-  setAlreadyPlayed?: (props: boolean) => void
+  isNewGame?: boolean
+  onRollDices?: (score: number) => void
 }
 
 export type PlayerDetailsType = {
   score: number,
   leftGame: number
+}
+
+export type MultiplayerGamePropsType = {
+  onGameOver: () => void
+}
+
+export type MultiplayerGameConfigurationPropsType = {
+  onStartGame: () => void
 }

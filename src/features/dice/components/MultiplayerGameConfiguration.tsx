@@ -1,22 +1,23 @@
 import { type ChangeEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   numberOfDicesSubject,
   numberOfPlayersSubject,
+  numberOfRollsSubject,
   playerTurnSubject,
 } from '../data/gameConfig';
 import { type MultiplayerGameConfigurationPropsType } from '../types/Game';
 
-const MultiplayerGameConfiguration = (
-  props: MultiplayerGameConfigurationPropsType,
-): JSX.Element => {
-  const navigate = useNavigate();
-
+const MultiplayerGameConfiguration = ({
+  onStartGame,
+}: MultiplayerGameConfigurationPropsType): JSX.Element => {
   const [numberOfPlayers, setNumberOfPlayers] = useState<number>(
     Number(process.env.REACT_APP_GAME_NUMBER_OF_PLAYER),
   );
   const [numberOfDices, setNumberOfDices] = useState<number>(
     Number(process.env.REACT_APP_GAME_NUMBER_OF_DICES),
+  );
+  const [numberOfRolls, setNumberOfRolls] = useState<number>(
+    Number(process.env.REACT_APP_GAME_NUMBER_OF_ROLLS_PER_PLAYER),
   );
 
   const handleNumberOfPlayersChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -29,11 +30,16 @@ const MultiplayerGameConfiguration = (
     setNumberOfDices(newNumberOfDices);
     numberOfDicesSubject.next(newNumberOfDices);
   };
+  const handleNumberOfRollsChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const newNumberOfRolls = Number(event.target.value);
+    setNumberOfRolls(newNumberOfRolls);
+    numberOfRollsSubject.next(newNumberOfRolls);
+  };
 
   const handleStartGame = (): void => {
     numberOfPlayersSubject.next(numberOfPlayers);
     playerTurnSubject.next(0);
-    navigate('/multiplayerGame');
+    onStartGame();
   };
 
   return (
@@ -45,6 +51,10 @@ const MultiplayerGameConfiguration = (
       <label>
         Number of Dices:
         <input type="number" value={numberOfDices} onChange={handleNumberOfDicesChange} />
+      </label>
+      <label>
+        Number of Rolls:
+        <input type="number" value={numberOfRolls} onChange={handleNumberOfRollsChange} />
       </label>
       <button onClick={handleStartGame}>Start Game</button>
     </div>

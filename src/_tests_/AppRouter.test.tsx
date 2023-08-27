@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Game from 'src/pages/Game';
+import Game from 'src/pages/GameConfiguration';
 import Home from 'src/pages/Home';
 import NotFound from 'src/pages/NotFound';
 import Result from 'src/pages/Result';
