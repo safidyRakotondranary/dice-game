@@ -9,7 +9,7 @@ export type DiceType = {
 }
 
 export type InitializeDicesPropsType = {
-  diceCount: number,
+  dicesCount: number,
   diceDetails: { minValue: number, maxValue: number }
 }
 

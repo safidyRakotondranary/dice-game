@@ -13,7 +13,7 @@ describe('Game', () => {
     jest.resetModules();
     process.env = {
       ...env,
-      REACT_APP_GAME_DICE_COUNT: '2',
+      REACT_APP_GAME_NUMBER_OF_DICES: '2',
       REACT_APP_DICE_MIN_VALUE: '1',
       REACT_APP_DICE_MAX_VALUE: '6',
     };
@@ -22,7 +22,7 @@ describe('Game', () => {
   afterEach(() => {
     process.env = env;
   });
-  it('Should display the list of the dices based on REACT_APP_GAME_DICE_COUNT', () => {
+  it('Should display the list of the dices based on REACT_APP_GAME_NUMBER_OF_DICES', () => {
     // Given
     mockUseDicesList.mockImplementation(() => ({
       dices: [
@@ -32,7 +32,7 @@ describe('Game', () => {
       initializeDices: jest.fn(),
       rollDices: jest.fn(),
     }));
-    const { container } = render(<Game />);
+    const { container } = render(<Game setScore={() => {}} />);
     const dicesComponents = container.querySelectorAll('[data-test="dice-component"]');
 
     // Then
@@ -40,7 +40,7 @@ describe('Game', () => {
   });
   it('Should be able to roll dices', () => {
     // Given
-    const mockRollDice = jest.fn()
+    const mockRollDice = jest.fn();
     mockUseDicesList.mockImplementation(() => ({
       dices: [
         { minValue: 1, maxValue: 6 },
@@ -51,16 +51,18 @@ describe('Game', () => {
     }));
 
     // When
-    const { getByText } = render(<Game />);
+    const { getByText } = render(<Game setScore={() => {}} />);
     const rollButton = getByText('Roll dices');
-    act(() => { fireEvent.click(rollButton) });
+    act(() => {
+      fireEvent.click(rollButton);
+    });
 
     // Then
     expect(mockRollDice).toBeCalledTimes(1);
   });
   it('Should be able to see the sum of the dices values', () => {
     // Given
-    const mockRollDice = jest.fn()
+    const mockRollDice = jest.fn();
     mockUseDicesList.mockImplementation(() => ({
       dices: [
         { value: 2, minValue: 1, maxValue: 6 },
@@ -71,7 +73,7 @@ describe('Game', () => {
     }));
 
     // When
-    const { getByText } = render(<Game />);
+    const { getByText } = render(<Game setScore={() => {}} />);
 
     // Then
     expect(getByText(`Total: 6`)).toBeInTheDocument();

@@ -1,22 +1,37 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from 'src/pages/Home';
-import Game from 'src/pages/Game';
 import Result from 'src/pages/Result';
 import NotFound from 'src/pages/NotFound';
 import Rules from 'src/pages/Rules';
+import MultiplayerGameConfiguration from './features/dice/components/MultiplayerGameConfiguration';
 
-const AppRouter = (): JSX.Element => {
-  return (
-    <Router>
-      <Routes>
-        <Route index path="/" element={<Home />} />
-        <Route path="/game" element={<Game />} />
-        <Route path="/result" element={<Result />} />
-        <Route path="/rules" element={<Rules />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
-  );
-};
+import { createBrowserRouter } from 'react-router-dom';
+import MultiplayerGame from './features/dice/components/MultiplayerGame';
 
-export default AppRouter;
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/rules',
+    element: <Rules />,
+  },
+  {
+    path: '/gameConfiguration',
+    element: <MultiplayerGameConfiguration />,
+  },
+  {
+    path: '/multiplayerGame',
+    element: <MultiplayerGame />,
+  },
+  {
+    path: '/result',
+    element: <Result />,
+  },
+  {
+    path: '*',
+    element: <NotFound />,
+  },
+]);
+
+export default router;

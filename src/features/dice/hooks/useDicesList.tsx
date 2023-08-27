@@ -5,8 +5,8 @@ import { rollDice } from '../utilities/Game';
 export default function useDicesList(): useDicesListType {
   const [dices, setDices] = useState<DiceType[]>([]);
 
-  const initializeDices = ({ diceCount, diceDetails }: InitializeDicesPropsType): void => {
-    const initialDices = Array.from(Array(diceCount).keys()).map(() => ({
+  const initializeDices = ({ dicesCount, diceDetails }: InitializeDicesPropsType): void => {
+    const initialDices = Array.from(Array(dicesCount).keys()).map(() => ({
       minValue: diceDetails.minValue,
       maxValue: diceDetails.maxValue,
     }));

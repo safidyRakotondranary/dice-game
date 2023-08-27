@@ -28,7 +28,7 @@ describe('useDiceList', () => {
 
     // When
     act(() => {
-      result.current.initializeDices({ diceCount: 2, diceDetails: { minValue: 1, maxValue: 6 } });
+      result.current.initializeDices({ dicesCount: 2, diceDetails: { minValue: 1, maxValue: 6 } });
     });
 
     // Then
@@ -46,7 +46,7 @@ describe('useDiceList', () => {
 
     // When
     act(() => {
-      result.current.initializeDices({ diceCount: 2, diceDetails: { minValue: 1, maxValue: 6 } });
+      result.current.initializeDices({ dicesCount: 2, diceDetails: { minValue: 1, maxValue: 6 } });
       result.current.rollDices();
     });
 
