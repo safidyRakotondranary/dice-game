@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import MultiplayerGameConfiguration from 'src/features/dice/components/MultiplayerGameConfiguration';
+import MultiplayerGameConfiguration from 'src/features/dice/components/MultiplayerGameConfiguration/MultiplayerGameConfiguration';
 
 const GameConfiguration = (): JSX.Element => {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BehaviorSubject } from 'rxjs';
-import MultiplayerGameConfiguration from '../MultiplayerGameConfiguration';
+import MultiplayerGameConfiguration from '../MultiplayerGameConfiguration/MultiplayerGameConfiguration';
 import { numberOfPlayersSubject } from '../../data/gameConfig';
 
 jest.mock('../../data/gameConfig', () => {

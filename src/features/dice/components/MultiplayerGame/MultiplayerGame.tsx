@@ -89,8 +89,10 @@ const MultiplayerGame = ({ onGameOver }: MultiplayerGamePropsType): JSX.Element 
 
   return (
     <div className={styles['multiplayerGame-component']}>
-      <Typography variant="h1">{numberOfPlayers} Players</Typography>
-      <Typography variant="h2">Player {currentPlayer + 1} turn</Typography>
+      <Typography variant="h1">{numberOfPlayers} Players Dice game</Typography>
+      <Typography sx={{ mt: 8 }} variant="h2">
+        Player {currentPlayer + 1} turn
+      </Typography>
       <Typography variant="h2">Score: {playersDetails[currentPlayer]?.score ?? 0}</Typography>
       <Typography variant="h2">Roll left: {playersDetails[currentPlayer]?.leftGame}</Typography>
       <div className={styles['game-box']}>

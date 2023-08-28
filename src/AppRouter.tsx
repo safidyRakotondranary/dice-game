@@ -1,19 +1,14 @@
-import Home from 'src/pages/Home';
-import Result from 'src/pages/Result';
-import NotFound from 'src/pages/NotFound';
-import Rules from 'src/pages/Rules';
-import GameConfiguration from 'src/pages/GameConfiguration';
-import Dice from 'src/pages/Dice';
+import Home from 'src/pages/Home/Home';
+import Result from 'src/pages/Result/Result';
+import NotFound from 'src/pages/NotFound/NotFound';
+import GameConfiguration from 'src/pages/GameConfiguration/GameConfiguration';
+import Dice from 'src/pages/Dice/Dice';
 import { createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
-  },
-  {
-    path: '/rules',
-    element: <Rules />,
   },
   {
     path: '/gameConfiguration',

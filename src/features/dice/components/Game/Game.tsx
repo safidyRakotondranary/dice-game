@@ -33,7 +33,6 @@ const Game = ({ isNewGame, onRollDices }: GamePropsType): JSX.Element => {
   }, [isNewGame]);
 
   useEffect(() => {
-    console.log('ato Game use effect', isNewGame);
     if (shouldEmitEvent) {
       const score = calculateTotalScore(dices);
 

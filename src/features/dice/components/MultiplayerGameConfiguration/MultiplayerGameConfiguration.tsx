@@ -4,8 +4,11 @@ import {
   numberOfPlayersSubject,
   numberOfRollsSubject,
   playerTurnSubject,
-} from '../data/gameConfig';
-import { type MultiplayerGameConfigurationPropsType } from '../types/Game';
+} from '../../data/gameConfig';
+import { type MultiplayerGameConfigurationPropsType } from '../../types/Game';
+
+import styles from 'src/features/dice/components/MultiplayerGameConfiguration/MultiplayerGameConfiguration.module.scss';
+import { FormControl, TextField, Button, FormLabel, Typography } from '@mui/material';
 
 const MultiplayerGameConfiguration = ({
   onStartGame,
@@ -43,20 +46,37 @@ const MultiplayerGameConfiguration = ({
   };
 
   return (
-    <div>
-      <label>
-        Number of Players:
-        <input type="number" value={numberOfPlayers} onChange={handleNumberOfPlayersChange} />
-      </label>
-      <label>
-        Number of Dices:
-        <input type="number" value={numberOfDices} onChange={handleNumberOfDicesChange} />
-      </label>
-      <label>
-        Number of Rolls:
-        <input type="number" value={numberOfRolls} onChange={handleNumberOfRollsChange} />
-      </label>
-      <button onClick={handleStartGame}>Start Game</button>
+    <div className={styles['MultiplayerGameConfiguration-component']}>
+      <Typography variant="h1">Game configuration</Typography>
+      <Typography textAlign="center" variant="h2">
+        Please configure your game fo a better experience
+      </Typography>
+      <FormControl sx={{ mt: 8 }}>
+        <FormLabel color="secondary">Number of Players</FormLabel>
+        <TextField
+          variant="filled"
+          type="number"
+          value={numberOfPlayers}
+          onChange={handleNumberOfPlayersChange}
+        />
+        <FormLabel>Number of Dices</FormLabel>
+        <TextField
+          variant="filled"
+          type="number"
+          value={numberOfDices}
+          onChange={handleNumberOfDicesChange}
+        />
+        <FormLabel>Number of Rolls</FormLabel>
+        <TextField
+          variant="filled"
+          type="number"
+          value={numberOfRolls}
+          onChange={handleNumberOfRollsChange}
+        />
+        <Button sx={{ mt: 8 }} variant="contained" onClick={handleStartGame}>
+          Start Game
+        </Button>
+      </FormControl>
     </div>
   );
 };
