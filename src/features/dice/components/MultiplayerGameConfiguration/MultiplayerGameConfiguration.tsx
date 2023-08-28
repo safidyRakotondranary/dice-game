@@ -9,18 +9,19 @@ import { type MultiplayerGameConfigurationPropsType } from '../../types/Game';
 
 import styles from 'src/features/dice/components/MultiplayerGameConfiguration/MultiplayerGameConfiguration.module.scss';
 import { FormControl, TextField, Button, FormLabel, Typography } from '@mui/material';
+import { NUMBER_OF_DICES, NUMBER_OF_PLAYER, NUMBER_OF_ROLLS } from '../../data/constants';
 
 const MultiplayerGameConfiguration = ({
   onStartGame,
 }: MultiplayerGameConfigurationPropsType): JSX.Element => {
   const [numberOfPlayers, setNumberOfPlayers] = useState<number>(
-    Number(process.env.REACT_APP_GAME_NUMBER_OF_PLAYER),
+    Number(process.env.REACT_APP_GAME_NUMBER_OF_PLAYER ?? NUMBER_OF_PLAYER),
   );
   const [numberOfDices, setNumberOfDices] = useState<number>(
-    Number(process.env.REACT_APP_GAME_NUMBER_OF_DICES),
+    Number(process.env.REACT_APP_GAME_NUMBER_OF_DICES ?? NUMBER_OF_DICES),
   );
   const [numberOfRolls, setNumberOfRolls] = useState<number>(
-    Number(process.env.REACT_APP_GAME_NUMBER_OF_ROLLS_PER_PLAYER),
+    Number(process.env.REACT_APP_GAME_NUMBER_OF_ROLLS_PER_PLAYER ?? NUMBER_OF_ROLLS),
   );
 
   const handleNumberOfPlayersChange = (event: ChangeEvent<HTMLInputElement>): void => {
