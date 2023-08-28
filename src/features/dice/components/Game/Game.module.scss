@@ -1,0 +1,26 @@
+.game-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .dices {
+    display: flex;
+  }
+  .roll-dices {
+    width: 200px;
+    box-sizing: border-box;
+    font-size: 22px;
+    padding: 5px 2rem;
+    margin-bottom: 10px;
+    text-shadow: -1px -1px 0 #ca8a00,1px -1px 0 #ca8a00,-1px 1px 0 #ca8a00,2px 2px 0 #ca8a00;
+    letter-spacing: 0.02em;
+    background: rgb(255,215,0);
+    background-image: linear-gradient(to bottom,rgb(255,235,0) 0%, rgb(255,215,0) 51%, rgb(255,244,188) 100%);
+    background-size: auto 200%;
+    border-top: 3px solid #fff;
+    border-right: 3px solid rgba(255,255,255,0.8);
+    border-bottom: 3px solid rgba(255,255,255,0.8);
+    border-left: 3px solid rgba(255,255,255,0.8);
+    transition: 0.1s;
+  }
+}
