@@ -1,34 +1,26 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { BehaviorSubject } from 'rxjs';
+import { render, fireEvent } from '@testing-library/react';
 import MultiplayerGameConfiguration from '../MultiplayerGameConfiguration/MultiplayerGameConfiguration';
-import { numberOfPlayersSubject } from '../../data/gameConfig';
-
-jest.mock('../../data/gameConfig', () => {
-  const originalModule = jest.requireActual('.../../data/gameConfig');
-  return {
-    ...originalModule,
-    numberOfPlayersSubject: new BehaviorSubject(2),
-    playerTurnSubject: {
-      next: jest.fn(),
-    },
-  };
-});
+import { numberOfPlayersSubject, numberOfDicesSubject, numberOfRollsSubject } from '../../data/gameConfig';
 
 describe('MultiplayerGameConfiguration', () => {
-  it('should update the numberOfPlayersSubject when input value changes', () => {
-    // Given
-    render(<MultiplayerGameConfiguration onStartGame={() => {}} />);
+  it('Should update the state and subjects on input change', () => {
+    const { getByLabelText } = render(<MultiplayerGameConfiguration onStartGame={() => {}} />);
 
-    // When
-    const inputField = screen.getByLabelText('Number of Players:');
-    fireEvent.change(inputField, { target: { value: '4' } });
+    fireEvent.change(getByLabelText('Number of Players'), { target: { value: '4' } });
+    fireEvent.change(getByLabelText('Number of Dices'), { target: { value: '3' } });
+    fireEvent.change(getByLabelText('Number of Rolls'), { target: { value: '5' } });
 
-    // Then
-    expect(numberOfPlayersSubject.next).toHaveBeenCalledWith(4);
+    expect(numberOfPlayersSubject.getValue()).toBe(4);
+    expect(numberOfDicesSubject.getValue()).toBe(3);
+    expect(numberOfRollsSubject.getValue()).toBe(5);
   });
-  it('Should be able to define the number of turn of each players', () => {
-    // Given
-    // When
-    // Then
+  it('Should trigger the correct actions when Start Game button is clicked', () => {
+    const onStartGameMock = jest.fn();
+
+    const { getByText } = render(<MultiplayerGameConfiguration onStartGame={onStartGameMock} />);
+
+    fireEvent.click(getByText('Start Game'));
+
+    expect(onStartGameMock).toHaveBeenCalled();
   });
 });

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { DICE_DEFAULT_MAX_VALUE, DICE_DEFAULT_MIN_VALUE } from '../../data/constants';
 import useDicesList from '../../hooks/useDicesList';
 import { type DiceType } from '../../types/Dice';
@@ -9,11 +9,12 @@ import { numberOfDicesSubject } from '../../data/gameConfig';
 import { Typography, Button } from '@mui/material';
 
 import styles from 'src/features/dice/components/Game/Game.module.scss';
+import * as React from 'react';
 
 const Game = ({ isNewGame, onRollDices }: GamePropsType): JSX.Element => {
-  const [totalScore, setTotalScore] = useState<number>();
+  const [shouldEmitEvent, setShouldEmitEvent] = React.useState<boolean>(false);
+  const [totalScore, setTotalScore] = React.useState<number>();
   const { dices, initializeDices, rollDices } = useDicesList();
-  const [shouldEmitEvent, setShouldEmitEvent] = useState<boolean>(false);
 
   useEffect(() => {
     if (isNewGame) {

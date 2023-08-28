@@ -1,5 +1,5 @@
 import { Button, Typography } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NUMBER_OF_PLAYER } from '../../data/constants';
 import {
   numberOfPlayersSubject,
@@ -11,6 +11,7 @@ import { type PlayerDetailsType, type MultiplayerGamePropsType } from '../../typ
 import Game from '../Game/Game';
 
 import styles from 'src/features/dice/components/MultiplayerGame/MultiplayerGame.module.scss';
+import * as React from 'react';
 
 const MultiplayerGame = ({ onGameOver }: MultiplayerGamePropsType): JSX.Element => {
   const [numberOfPlayers, setNumberOfPlayers] = useState<number>(
@@ -21,7 +22,7 @@ const MultiplayerGame = ({ onGameOver }: MultiplayerGamePropsType): JSX.Element 
   const [currentPlayer, setCurrentPlayer] = useState<number>(0);
   const [playersDetails, setPlayersDetails] = useState<Record<number, PlayerDetailsType>>({});
 
-  useEffect(() => {
+  React.useEffect(() => {
     const subscriptionNumberOfPlayer = numberOfPlayersSubject.subscribe(newNumberOfPlayers => {
       setNumberOfPlayers(newNumberOfPlayers);
     });
@@ -39,7 +40,7 @@ const MultiplayerGame = ({ onGameOver }: MultiplayerGamePropsType): JSX.Element 
     };
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const initialLeftGame = Number(numberOfRollsSubject.value ?? 0);
 
     const initialPlayerDetails = Array.from({ length: numberOfPlayers }, (_, index) => ({
@@ -47,11 +48,10 @@ const MultiplayerGame = ({ onGameOver }: MultiplayerGamePropsType): JSX.Element 
       leftGame: initialLeftGame,
     }));
 
-    console.log(initialPlayerDetails);
     playersDetailsSubject.next(initialPlayerDetails);
   }, [numberOfPlayers]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setIsNewGame(true);
   }, [currentPlayer]);
 
@@ -76,7 +76,6 @@ const MultiplayerGame = ({ onGameOver }: MultiplayerGamePropsType): JSX.Element 
             : 0,
       };
     }
-    console.log(score, subjectDetails);
     playersDetailsSubject.next(subjectDetails);
   };
 

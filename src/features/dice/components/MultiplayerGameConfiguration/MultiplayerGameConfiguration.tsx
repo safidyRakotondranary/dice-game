@@ -52,22 +52,25 @@ const MultiplayerGameConfiguration = ({
         Please configure your game fo a better experience
       </Typography>
       <FormControl sx={{ mt: 8 }}>
-        <FormLabel color="secondary">Number of Players</FormLabel>
+        <FormLabel htmlFor="numberOfPlayers">Number of Players</FormLabel>
         <TextField
+          id="numberOfPlayers"
           variant="filled"
           type="number"
           value={numberOfPlayers}
           onChange={handleNumberOfPlayersChange}
         />
-        <FormLabel>Number of Dices</FormLabel>
+        <FormLabel htmlFor="numberOfDices">Number of Dices</FormLabel>
         <TextField
+          id="numberOfDices"
           variant="filled"
           type="number"
           value={numberOfDices}
           onChange={handleNumberOfDicesChange}
         />
-        <FormLabel>Number of Rolls</FormLabel>
+        <FormLabel htmlFor="numberOfRolls">Number of Rolls</FormLabel>
         <TextField
+          id="numberOfRolls"
           variant="filled"
           type="number"
           value={numberOfRolls}

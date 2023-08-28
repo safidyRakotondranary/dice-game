@@ -30,6 +30,17 @@ describe('AppRouter', () => {
     expect(screen.getByText(/score/i)).toBeInTheDocument();
   });
 
+  it('displays the Game page configuration when "/gameConfiguration" route is accessed', () => {
+    render(
+      <MemoryRouter initialEntries={['/gameConfiguration']}>
+        <GameConfiguration />
+      </MemoryRouter>,
+    );
+
+    // Assuming your Game component has a unique text "This is the game page"
+    expect(screen.getByText(/configure/i)).toBeInTheDocument();
+  });
+
   it('displays the Result page when "/result" route is accessed', () => {
     render(
       <MemoryRouter initialEntries={['/result']}>

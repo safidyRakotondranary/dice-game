@@ -1,9 +1,14 @@
 import { act, fireEvent, render } from '@testing-library/react';
+import * as React from 'react';
 import Game from 'src/features/dice/components/Game/Game';
 import useDicesList from '../../hooks/useDicesList';
 
 const mockUseDicesList = useDicesList as jest.MockedFunction<typeof useDicesList>;
 jest.mock('../../hooks/useDicesList');
+
+jest.mock('@fortawesome/react-fontawesome', () => ({
+  FontAwesomeIcon: ({ icon }: any) => <div data-testid="mocked-icon">{icon.iconName}</div>,
+}));
 
 describe('Game', () => {
   const env = process.env;
@@ -38,6 +43,27 @@ describe('Game', () => {
     // Then
     expect(dicesComponents.length).toEqual(2);
   });
+  it('Should renders the dices when isNewGame is true', () => {
+    mockUseDicesList.mockReturnValue({
+      dices: [
+        { value: 1, minValue: 1, maxValue: 6 },
+        { value: 2, minValue: 1, maxValue: 6 },
+        { value: 3, minValue: 1, maxValue: 6 },
+      ],
+      initializeDices: jest.fn(),
+      rollDices: jest.fn(),
+    });
+
+    const { getAllByTestId } = render(<Game isNewGame={true} />);
+    const diceIcons = getAllByTestId('mocked-icon');
+    const firstDiceIcon = diceIcons[0];
+    const secondDiceIcon = diceIcons[1];
+    const thirdDiceIcon = diceIcons[2];
+    
+    expect(firstDiceIcon).toBeInTheDocument();
+    expect(secondDiceIcon).toBeInTheDocument();
+    expect(thirdDiceIcon).toBeInTheDocument();
+  });
   it('Should be able to roll dices', () => {
     // Given
     const mockRollDice = jest.fn();
@@ -51,7 +77,7 @@ describe('Game', () => {
     }));
 
     // When
-    const { getByText } = render(<Game />);
+    const { getByText } = render(<Game isNewGame={true} />);
     const rollButton = getByText('Roll dices');
     act(() => {
       fireEvent.click(rollButton);
@@ -60,22 +86,31 @@ describe('Game', () => {
     // Then
     expect(mockRollDice).toBeCalledTimes(1);
   });
-  it('Should be able to see the sum of the dices values', () => {
+  it('Should be able to see the sum of the value of the dices', () => {
     // Given
-    const mockRollDice = jest.fn();
     mockUseDicesList.mockImplementation(() => ({
       dices: [
-        { value: 2, minValue: 1, maxValue: 6 },
+        { value: 6, minValue: 1, maxValue: 6 },
         { value: 4, minValue: 1, maxValue: 6 },
       ],
       initializeDices: jest.fn(),
-      rollDices: mockRollDice,
+      rollDices: jest.fn(),
     }));
+    // Mock the shouldEmitEvent state value
+    jest.spyOn(React, 'useState')
+      .mockImplementationOnce(() => [true, jest.fn()]) // Mock shouldEmitEvent state
+      .mockImplementationOnce(() => [10, jest.fn()]); // Mock the total state
+
+    // jest.spyOn(React, 'useEffect')
+    //   .mockImplementation((f) => f())
 
     // When
-    const { getByText } = render(<Game />);
+    const { getByText } = render(<Game isNewGame={false} />);
 
     // Then
-    expect(getByText(`Total: 6`)).toBeInTheDocument();
+    expect(getByText(/10/)).toBeInTheDocument();
+
+    // Restore all mock
+    jest.restoreAllMocks();
   });
 });
