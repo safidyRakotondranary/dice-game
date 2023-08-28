@@ -1,0 +1,16 @@
+.app {
+  height: 100vh;
+  box-sizing: border-box;
+  background: #08f radial-gradient(#f1f9ff, #08f);
+  background-repeat: repeat;
+  background-size: auto;
+  color: #fff;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  text-shadow: -1px -1px 0 #08f,1px -1px 0 #08f,-1px 1px 0 #08f,3px 3px 0 #08f;
+  letter-spacing: .06em;
+  padding: 0 0 20px 0;
+  padding-bottom: 20px;
+  background-repeat: repeat;
+  background-image: url("/assets/imgs/background.jpg");
+}

@@ -1,22 +1,31 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from 'src/pages/Home';
-import Game from 'src/pages/Game';
-import Result from 'src/pages/Result';
-import NotFound from 'src/pages/NotFound';
-import Rules from 'src/pages/Rules';
+import Home from 'src/pages/Home/Home';
+import Result from 'src/pages/Result/Result';
+import NotFound from 'src/pages/NotFound/NotFound';
+import GameConfiguration from 'src/pages/GameConfiguration/GameConfiguration';
+import Dice from 'src/pages/Dice/Dice';
+import { createBrowserRouter } from 'react-router-dom';
 
-const AppRouter = (): JSX.Element => {
-  return (
-    <Router>
-      <Routes>
-        <Route index path="/" element={<Home />} />
-        <Route path="/game" element={<Game />} />
-        <Route path="/result" element={<Result />} />
-        <Route path="/rules" element={<Rules />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
-  );
-};
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/gameConfiguration',
+    element: <GameConfiguration />,
+  },
+  {
+    path: '/game',
+    element: <Dice />,
+  },
+  {
+    path: '/result',
+    element: <Result />,
+  },
+  {
+    path: '*',
+    element: <NotFound />,
+  },
+]);
 
-export default AppRouter;
+export default router;

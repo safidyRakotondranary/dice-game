@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Game from 'src/pages/Game';
-import Home from 'src/pages/Home';
-import NotFound from 'src/pages/NotFound';
-import Result from 'src/pages/Result';
-import Rules from 'src/pages/Rules';
+import GameConfiguration from 'src/pages/GameConfiguration/GameConfiguration';
+import Game from 'src/pages/Dice/Dice';
+import Home from 'src/pages/Home/Home';
+import NotFound from 'src/pages/NotFound/NotFound';
+import Result from 'src/pages/Result/Result';
 import { it, describe } from '@jest/globals';
 
 describe('AppRouter', () => {
@@ -16,7 +16,7 @@ describe('AppRouter', () => {
     );
 
     // Assuming your Game component has a unique text "This is the game page"
-    expect(screen.getByText(/This is the home page/i)).toBeInTheDocument();
+    expect(screen.getByText(/play/i)).toBeInTheDocument();
   });
 
   it('displays the Game page when "/game" route is accessed', () => {
@@ -27,7 +27,18 @@ describe('AppRouter', () => {
     );
 
     // Assuming your Game component has a unique text "This is the game page"
-    expect(screen.getByText(/This is the game page/i)).toBeInTheDocument();
+    expect(screen.getByText(/score/i)).toBeInTheDocument();
+  });
+
+  it('displays the Game page configuration when "/gameConfiguration" route is accessed', () => {
+    render(
+      <MemoryRouter initialEntries={['/gameConfiguration']}>
+        <GameConfiguration />
+      </MemoryRouter>,
+    );
+
+    // Assuming your Game component has a unique text "This is the game page"
+    expect(screen.getByText(/configure/i)).toBeInTheDocument();
   });
 
   it('displays the Result page when "/result" route is accessed', () => {
@@ -38,18 +49,7 @@ describe('AppRouter', () => {
     );
 
     // Assuming your Game component has a unique text "This is the result page"
-    expect(screen.getByText(/This is the result page/i)).toBeInTheDocument();
-  });
-
-  it('displays the Rules page when "/rules" route is accessed', () => {
-    render(
-      <MemoryRouter initialEntries={['/rules']}>
-        <Rules />
-      </MemoryRouter>,
-    );
-
-    // Assuming your Game component has a unique text "This is the rules page"
-    expect(screen.getByText(/This is the rules page/i)).toBeInTheDocument();
+    expect(screen.getByText(/details/i)).toBeInTheDocument();
   });
 
   it('displays the 404 page when "/unknown-route" route is accessed', () => {
